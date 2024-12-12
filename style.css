@@ -1,0 +1,220 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background: #e0f7fa;
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Header and Time */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1vh 2vw;
+  background: #8fd3ff;
+}
+h1 {
+  margin: 0;
+  font-size: 3vh;
+  color: #fff;
+}
+.time-display {
+  font-size: 2vh;
+  color: #fff;
+}
+
+/* Day Sections */
+.day-sections {
+  display: flex;
+  flex-direction: column;
+  padding: 1vh 2vw;
+  background: #ffffffcc;
+  gap: 1vh;
+}
+.section-block h2 {
+  margin: 0;
+  font-size: 2.5vh;
+  color: #333;
+}
+.placeholder-row {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  margin-top: 1vh;
+}
+.placeholder {
+  width: 8vh;
+  height: 8vh;
+  border: 0.3vh dashed #bdbdbd;
+  border-radius: 1vh;
+  background: #f5f5f5;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.placeholder.empty::after {
+  content: "?";
+  opacity: 0.8;
+  font-size: 3vh;
+}
+.placeholder.highlight {
+  border-color: #2196f3;
+  box-shadow: 0 0 1vh #2196f3;
+  transform: scale(1.05);
+}
+.add-btn {
+  width: 8vh;
+  height: 8vh;
+  border: none;
+  background: #ffffffcc;
+  border-radius: 1vh;
+  font-size: 3vh;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0.5vh #ccc;
+}
+.add-btn:hover, .add-btn:focus {
+  background: #fffee9;
+  outline: none;
+}
+
+/* Homework Button */
+.homework-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1vh 2vw;
+  padding: 1vh 2vw;
+  border: none;
+  border-radius: 1vh;
+  font-size: 2.5vh;
+  color: #fff;
+  background: #f44336;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.homework-btn.green {
+  background: #4caf50;
+  animation: wobble 1s infinite ease-in-out;
+}
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+/* Search and Category */
+.search-container {
+  margin: 1vh 2vw;
+}
+.search-bar {
+  width: 100%;
+  padding: 1vh;
+  font-size: 2vh;
+  border-radius: 1vh;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.category-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+  background: #ffffffcc;
+  padding: 1vh 2vw;
+}
+.cat-btn {
+  font-size: 2vh;
+  background: #fff;
+  border: none;
+  border-radius: 1vh;
+  padding: 0.5vh 1vh;
+  cursor: pointer;
+}
+.cat-btn:hover, .cat-btn:focus {
+  background: #fffee9;
+  outline: none;
+}
+
+/* Emoji Deck */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffffcc;
+  padding: 1vh 2vw;
+  box-sizing: border-box;
+}
+.emoji-deck {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1vh;
+}
+.emoji-item {
+  font-size: 3vh;
+  cursor: grab;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6vh;
+  height: 6vh;
+  border-radius: 1vh;
+  transition: background 0.2s, transform 0.2s;
+  touch-action: none;
+}
+.emoji-item:active {
+  cursor: grabbing;
+}
+.emoji-item:hover, .emoji-item:focus {
+  background: #fff9c4;
+  outline: none;
+}
+
+/* Dragging */
+.dragging {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+}
+.dragging.magnet {
+  transform: scale(1.2);
+  transition: transform 0.1s;
+}
+
+/* Clouds Background */
+.clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: url('data:image/svg+xml;utf8,<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="50" rx="50" ry="25" fill="%23ffffff" opacity="0.7"/></svg>') repeat;
+  background-size: 50vh 25vh;
+  animation: moveClouds 60s linear infinite;
+  z-index: -1;
+}
+@keyframes moveClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Focus Styles */
+:focus {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+/* Ensure no scrolling */
+body, main, .day-sections {
+  overflow: hidden;
+}
